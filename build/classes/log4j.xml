@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE log4j:configuration SYSTEM "log4j.dtd">
+
+<log4j:configuration xmlns:log4j="http://jakarta.apache.org/log4j/">
+
+<!--   <appender name="DAILY_LOG" class="org.apache.log4j.DailyRollingFileAppender">
+	<param name="File" value="arcgisnsdi.log"/>
+	<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+	<layout class="org.apache.log4j.PatternLayout">
+	  <param name="ConversionPattern" value="%d{yyyy-MM-dd HH:mm:ss} %-5p [cat=%c{2}] - %m%n"/>
+	</layout>
+  </appender> -->
+
+  <appender name="CONSOLE" class="org.apache.log4j.ConsoleAppender">
+	<layout class="org.apache.log4j.PatternLayout">
+	  <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p %l %x - %m\n"/>
+	</layout>
+  </appender>
+
+  <appender name="SYSLOG" class="org.apache.log4j.net.SyslogAppender">
+    <param name="SyslogHost" value="localhost" />
+    <layout class="org.apache.log4j.PatternLayout">
+      <param name="ConversionPattern" value="[AWAD] %d{yyyy-MM-dd HH:mm:ss} %-5p [cat=%c{2}] - %m%n"/>
+    </layout>
+  </appender>
+  
+  <appender name="fileAppender" class="org.apache.log4j.DailyRollingFileAppender">
+  	<param name="encoding" value="UTP-8" />
+  	<param name="DatePattern" value="'.'yyyy-MM-dd"/>
+  		<param name="File" value="../logs/roadapi.log" />
+    <layout class="org.apache.log4j.PatternLayout">
+	  <param name="ConversionPattern" value="[%d{yyyy-MM-dd HH:mm:ss}] %-5p %l %x - %m\n"/>
+	</layout>
+  </appender>
+  
+  <logger name="org.apache">
+	<level value="WARN"/>
+  </logger>
+
+  <logger name="com.sun">
+	<level value="WARN"/>
+  </logger>
+
+  <logger name="com.sphinfo">
+	<level value="WARN"/>
+  </logger>
+  
+   <logger name="com.sphinfo">
+	<level value="debug"/>
+  </logger>
+    
+  <logger name="test">
+	<level value="ALL"/>
+  </logger>
+  
+  <root>
+	<level value="ALL"/>
+	<appender-ref ref="CONSOLE"/>
+	<appender-ref ref="DAILY_LOG"/>
+	<appender-ref ref="fileAppender"/>
+  </root>
+
+</log4j:configuration>
